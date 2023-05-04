@@ -31,6 +31,9 @@ public class PortManagement extends JFrame {
     private JTextField countryTextField;
     private JButton ClearBtn;
     private JTextArea textArea1;
+    private JTextField textFieldHub;
+    private JButton InspectBtn;
+    private JLabel HubLabel;
 
     public PortManagement(Port port){
 
@@ -38,6 +41,13 @@ public class PortManagement extends JFrame {
         setTitle("Port Management: Valencia");
         setSize(1000,500);
         setVisible(true);
+
+        InspectBtn.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                textArea1.setText(port.checkedByCustoms(Integer.valueOf(textFieldWeight.getText()),Integer.valueOf(textFieldHub.getText())));
+            }
+        });
 
         pileButton.addActionListener(new ActionListener() {
             @Override
@@ -93,6 +103,19 @@ public class PortManagement extends JFrame {
                 textArea1.setText(port.toString());
             }
         });
+    }
+
+    public class NewFrame extends JFrame{
+        private JLabel TEXT;
+
+        //Incomplete, i am running out of time
+
+        public NewFrame(String text){
+            TEXT.setText(text);
+            setTitle("Result of customs");
+            setSize(1000,500);
+            setVisible(true);
+        }
     }
 
     public static void main(String[] args) {
